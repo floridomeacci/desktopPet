@@ -1,69 +1,53 @@
-<!-- Improved compatibility of "Back to Top" link: See: https://github.com/floridomeacci/Desktop-Pet -->
-<a name="readme-top"></a>
+# Desktop Pet
 
-<!--
-<!-- PROJECT LOGO -->
-<br />
-<div align="center">
-  <a href="https://github.com/floridomeacci/Desktop-Pet">
-    <img src="https://github.com/floridomeacci/Desktop-Pet/assets/28354552/673af905-4979-4dc1-85be-83965a8d1ec2" alt="TBWA Backslash Generator" width="200" height="100%">
-  </a>
+Desktop Pet is a small macOS experiment inspired by Clippy. An animated character stays above other windows, can be dragged around the screen, and periodically shows a practical macOS tip.
 
-  <h3 align="center">TBWA Desktop Pet</h3>
+The character artwork is original 3D work. The application was built as an experiment in using ChatGPT to help write a native desktop utility.
 
-  <p align="center">
-    At TBWA, I've been working on a personal productivity tool that sits atop my screen, providing useful tips and insights. Inspired by the famous Clippy, it teeters on the edge of copyright infringement.
-    <br />
-  </p>
-</div>
+## What it does
 
-<!-- ABOUT THE PROJECT -->
-## About The Project
+- Plays a frame-by-frame idle animation in a transparent window
+- Keeps the character visible above normal application windows
+- Lets the user drag the character around the desktop
+- Shows a dismissible tip every ten seconds
+- Keeps the window inside the main display bounds
 
-This project was almost entirely coded by ChatGPT, with me at the helm, while the 3D artwork was created by me. I aimed to see if it was feasible to create something as whimsical as a desktop pet using ChatGPT. The pet is draggable and remains in front of other windows. Periodically, the pet offers a tip, reminiscent of Clippy's style.
+## Tech stack
 
-<br>
+| Area | Technology |
+|---|---|
+| Language | Python 3 |
+| macOS bridge | PyObjC |
+| Native interface | AppKit, Foundation, and Quartz |
+| Artwork | PNG animation frames and layered character assets |
 
-Starting position:
+This project is macOS-only because it uses native Cocoa APIs.
 
-![Product Name Screen Shot 1](https://github.com/floridomeacci/Desktop-Pet/assets/28354552/605b1548-c748-438b-9e6b-89e3666dd479)
+## Run locally
 
-The pet is draggable:
+You need macOS, Python 3, and the Xcode Command Line Tools.
 
-![Product Name Screen Shot 2](https://github.com/floridomeacci/Desktop-Pet/assets/28354552/73004ea0-36c6-4a3e-8965-d105f628e979)
+```bash
+git clone https://github.com/floridomeacci/desktopPet.git
+cd desktopPet
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install pyobjc
+python main.py
+```
 
-Occasional tip:
+Run the last command from the repository root so the application can find `images/idle_ani`.
 
-![Product Name Screen Shot 3](https://github.com/floridomeacci/Desktop-Pet/assets/28354552/80d7014e-77f1-4d23-9859-7fe30a409e0e)
+Stop the pet from the terminal with `Control-C`.
 
-<!-- BUILT WITH -->
-## Built With
+## Project structure
 
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+```text
+main.py       Window behavior, animation, dragging, and timers
+popup.py      Native tip window and close action
+messages.py   Tip copy
+images/       Character artwork and animation frames
+```
 
-<!-- CONTACT -->
-## Contact
-
-Florido Meacci - meacciflorido@gmail.com
-
-Project Link: [https://github.com/floridomeacci/Desktop-Pet](https://github.com/floridomeacci/Desktop-Pet)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-
-
----
-
-## Tech Stack
-
-The tools and technologies used in this project:
-
-[![My Skills](https://skillicons.dev/icons?i=py)](https://skillicons.dev)
-
-## Support
-
-If you found this project useful or interesting, consider buying me a coffee!
-
-[![Buy Me A Coffee](https://img.shields.io/badge/Buy_Me_A_Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/floridomeacci)
+Project page: [github.com/floridomeacci/desktopPet](https://github.com/floridomeacci/desktopPet)
